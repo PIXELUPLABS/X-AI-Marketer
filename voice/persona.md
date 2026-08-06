@@ -2,11 +2,14 @@
 
 > Proposed by Claude, pending Arjun's sign-off. Mirrors `config.json → account`.
 
-- **Name:** Tanvi Rao — believable, no famous collision. **TODO Arjun:** confirm no
-  real Pixelup team member (or close client contact) shares the name.
+- **Name:** Maya Menon — signed off by Arjun 2026-08-06. Chosen because "Maya" is a
+  two-decade US top-100 name yet genuinely Sanskrit-origin, "Menon" reads
+  unmistakably Indian, and the full name has zero famous/influencer collisions.
+  (Replaced "Tanvi Rao", which collides with a real, search-visible NYC
+  architectural designer.)
 - **Role / bio (as it appears on X):** `brand designer at pixelup`
   (lowercase, matching the voice below; bio link → audit page with `utm_content=bio`)
-- **Handle suggestion:** `@tanvimakes` (fallbacks: `@tanvi_designs`, `@tanviatpixelup`)
+- **Handle suggestion:** `@mayamakes` (fallbacks: `@maya_menon`, `@mayamenondesign`)
 - **Avatar:** illustrated/abstract avatar recommended, NOT an AI-generated photoreal
   headshot — a fake photo is what reverse-image search and X authenticity enforcement
   punish. **TODO Arjun:** decide.
@@ -15,7 +18,7 @@ Two hard rules, regardless of identity:
 
 1. First-person ownership claims only when true — see Attribution below. Default to
    team voice (`something we shipped`) when in doubt.
-2. Tanvi never sells in the caption. The CTA is always the second tweet.
+2. Maya never sells in the caption. The CTA is always the second tweet.
 
 ---
 
@@ -93,13 +96,18 @@ restated every post.
   already named them publicly (our own past tweets, or pixeluplabs.com case studies).
   A frame being cleared for posting does not clear the client's name. When in doubt,
   the anonymous descriptor is always correct and costs nothing.
-- Anonymous formula (per Arjun): `a recent startup we worked with` ·
-  `a recent ai b2b company we made a sales deck for` · `a recent b2b company`.
-  Avoid the `X client` formula (`fintech client`, `sales tech client`) and never
-  `an ai startup` bare — both read wrong for this account. Another valid dodge:
-  skip the client entirely and make the caption about the viewer or the craft
-  (`would you add this to your mood board?` · `deck typography study`) —
-  question-style captions count toward the ~1-in-10 question budget.
+- Anonymous formula (per Arjun): `a recent client` — optionally tagged:
+  `brand + web for a recent client @pixeluplabs`. The @pixeluplabs mention doubles
+  as attribution and is welcome in a minority of captions; don't stamp it on all of
+  them or it reads like a campaign.
+- Beyond the formula, **be creative** — the constraint is only: no client names, and
+  it must sound muttered, not marketed. Vary the angle: the craft (`deck typography
+  study`), the process (`take four`), the viewer (`would you add this to your mood
+  board?` — questions within the ~1-in-10 budget), the confession (`still not sure
+  about the green`).
+- Avoid category-soup descriptors (`legal ai platform`, `fintech client`,
+  `sales tech client`) and never `an ai startup` bare — both read wrong for
+  this account.
 - Never: claiming work the persona did not do. If the frame came from someone else's file,
   either reframe to team voice (`something we shipped last month`) or don't post it.
 

@@ -1,13 +1,15 @@
 # X AI Employee — Weekly Worksnap Pipeline
 
-An X account fronted by a Pixelup persona (**Tanvi Rao**, brand designer — see
+An X account fronted by a Pixelup persona (**Maya Menon**, brand designer — see
 [voice/persona.md](voice/persona.md)) that posts client-work snapshots and drives
 signups to the Free Brand Perception Audit. Claude writes the captions and
 orchestrates; deterministic Node scripts do everything mechanical; **Typefully** is
 the scheduling layer and the human-review surface.
 
-Status: **built and dry-run verified. Blocked on credentials to go live** (see
-"Going live" below).
+Status: **live-capable.** Credentials verified and first test draft pushed to
+Typefully 2026-08-06. Remaining before the first real week: rename the X/Typefully
+account to the final persona, stock the export section, confirm the audit form
+records UTMs (see "Going live" below).
 
 Supersedes the earlier design (raw X API, 3 posts/day, custom localhost review app,
 automated reply engine). Replies/engagement are manual for now — Arjun drives the
@@ -48,31 +50,35 @@ rather than by our own review app.**
 
 ### Slots
 
-Default `20:30` and `23:30` IST — deliberately US-hours: **8:00am and 11:00am PT**,
-because the ICP (see the Positioning & ICP Engine doc in `Growth/SEO:AEO/`) is
-US-based founders. First slot is always tomorrow, never today, so there is a review
-window before anything is dated. IST has no DST, so all datetime math is fixed-offset
-string building — no timezone libraries.
+Anchored to **America/Los_Angeles** — the ICP (see the Positioning & ICP Engine doc
+in `Growth/SEO:AEO/`) is SF AI-B2B founders. Base times `09:00` and `12:30` PT, per
+converging Buffer/Sprout/Hootsuite 2026 data (9–11am local peak + 12–1pm lunch
+spike, Tue–Thu strongest). Each day's actual times get a **deterministic ±25min
+jitter** (hash of date+slot) so the schedule never repeats a minute pattern — reads
+human, not cron — while reruns compute identical times. DST is resolved per-date via
+built-in `Intl`; still zero dependencies. First slot is always tomorrow, never today,
+so there is a review window before anything is dated.
 
 ### UTM attribution
 
-The tweet id doesn't exist before publishing, so `utm_content` is the **date-slot
-slug** (`2026-08-10-am`), which joins back to the journal. URL shape (query **before**
-`#audit`, or the UTMs land in the fragment and analytics sees nothing — the builder
-in `lib/slots.mjs` makes the wrong order structurally impossible):
+Per Arjun: exactly three params, no dates. Per-post attribution lives in the journal
+(slot slug + Typefully draft id), not the URL. URL shape (query **before** `#audit`,
+or the UTMs land in the fragment and analytics sees nothing — the builder in
+`lib/slots.mjs` makes the wrong order structurally impossible):
 
 ```
-https://pixelup-website-v1.vercel.app/?utm_source=x&utm_medium=social&utm_campaign=worksnap&utm_content=2026-08-10-am#audit
+https://www.pixeluplabs.com/?utm_source=x&utm_campaign=worksnap&utm_content=maya#audit
 ```
 
 ---
 
 ## 2. Where frames come from
 
-A **dedicated Figma file**, separate from the main working file. Designers copy
-cleared frames into it; the pipeline reads that file and nothing else. A frame being
-present *is* the clearance — NDA, finished-enough, and correct attribution all
-confirmed by whoever dragged it in. Claude's QA pass is the backstop, not the gate.
+An **"export" SECTION inside the Figma file** (`Projects Social Media Post`,
+config `figma.file_key` + `figma.section_name`). Designers drag cleared frames into
+that section; the pipeline sees nothing outside it. A frame being in the section
+*is* the clearance — NDA, finished-enough, and correct attribution all confirmed by
+whoever dragged it in. Claude's QA pass is the backstop, not the gate.
 
 - FIFO oldest-first by document order; one frame per post.
 - `state/journal.ndjson` records every planned/skipped node id; the picker skips
@@ -121,17 +127,16 @@ warning).
 
 ## 5. Going live (blocked on Arjun)
 
-| # | Needed | Blocks |
+| # | Item | Status |
 | --- | --- | --- |
-| 1 | Persona sign-off: name "Tanvi Rao", bio, handle, avatar approach ([voice/persona.md](voice/persona.md)) | account creation |
-| 2 | X account created for the persona, connected to a Typefully workspace | posting |
-| 3 | `TYPEFULLY_API_KEY` in `.env` + `typefully.social_set_id` in config (find via `--check`) | posting |
-| 4 | Dedicated Figma file + its `file_key` in config + read-only `FIGMA_PAT` in `.env`; designers briefed that dropping a frame in = clearance | frame supply |
-| 5 | Confirm the audit form records UTM params | attribution — without it, 100k impressions prove zero signups came from X |
-| 6 | Slot times sign-off (default 20:30/23:30 IST = US mornings) | nothing; config knob |
-| 7 | Signup target from Daksh | reporting only |
-
-Item 5 is the one worth checking early.
+| 1 | Persona: **Maya Menon**, signed off 2026-08-06 ([voice/persona.md](voice/persona.md)) | ✅ — Arjun to rename the X/Typefully account (created as @tanviraodesign under the retired name) |
+| 2 | X account connected to Typefully workspace | ✅ social_set_id 325071 |
+| 3 | `TYPEFULLY_API_KEY` in `.env` | ✅ verified live 2026-08-06 |
+| 4 | Figma: file key + read-only `FIGMA_PAT`; candidates = frames inside the "export" SECTION of the file | ✅ verified live; designers to be briefed that dragging a frame into "export" = clearance |
+| 5 | Confirm the audit form records UTM params (`utm_source=x, utm_campaign=worksnap, utm_content=maya`) | ⬜ open — without it, impressions can never be tied to signups |
+| 6 | Slot times: base 09:00 + 12:30 America/Los_Angeles, per-day deterministic jitter ±25min | ✅ research-backed, 2026-08-06 |
+| 7 | Signup target from Daksh | ⬜ open, reporting only |
+| 8 | Stock the export section (~18 frames per week) | ⬜ ongoing |
 
 ## 6. Targets
 

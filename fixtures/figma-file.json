@@ -7,84 +7,91 @@
         "type": "CANVAS",
         "children": [
           {
-            "id": "1:100",
-            "name": "frame-01",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:101",
-            "name": "frame-02",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:102",
-            "name": "frame-03",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:103",
-            "name": "frame-04",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:104",
-            "name": "frame-05",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:105",
-            "name": "frame-06",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:106",
-            "name": "frame-07",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:107",
-            "name": "frame-08",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:108",
-            "name": "frame-09",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:109",
-            "name": "frame-10",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:110",
-            "name": "frame-11",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:111",
-            "name": "frame-12",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:112",
-            "name": "frame-13",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:113",
-            "name": "frame-14",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:114",
-            "name": "frame-15",
-            "type": "FRAME"
-          },
-          {
-            "id": "1:115",
-            "name": "frame-16",
-            "type": "FRAME"
+            "id": "0:900",
+            "name": "export",
+            "type": "SECTION",
+            "children": [
+              {
+                "id": "1:100",
+                "name": "frame-01",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:101",
+                "name": "frame-02",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:102",
+                "name": "frame-03",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:103",
+                "name": "frame-04",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:104",
+                "name": "frame-05",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:105",
+                "name": "frame-06",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:106",
+                "name": "frame-07",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:107",
+                "name": "frame-08",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:108",
+                "name": "frame-09",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:109",
+                "name": "frame-10",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:110",
+                "name": "frame-11",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:111",
+                "name": "frame-12",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:112",
+                "name": "frame-13",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:113",
+                "name": "frame-14",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:114",
+                "name": "frame-15",
+                "type": "FRAME"
+              },
+              {
+                "id": "1:115",
+                "name": "frame-16",
+                "type": "FRAME"
+              }
+            ]
           }
         ]
       }

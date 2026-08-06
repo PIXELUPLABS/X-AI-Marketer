@@ -50,8 +50,9 @@ node scripts/prepare-week.mjs --reslot <run_id>
 ### 3. Write captions
 
 Read `voice/persona.md` IN FULL first — identity, voice shape, archetypes,
-attribution rules, banned list. Then for each slotted item write `caption` and
-`archetype` into batch.json.
+attribution rules, banned list. Skim `voice/caption-bank.md` for angle inspiration
+(adapt, never copy — lint rule 8 blocks repeats). Then for each slotted item write
+`caption` and `archetype` into batch.json.
 
 Target archetype mix per 14: ~5 `rejected_unused`, ~6 `plain_label`, ~2 `bts_process`,
 ≤1 `opinion`. Look at the actual image before captioning — the caption is a label or
@@ -59,13 +60,13 @@ aside about what's literally in the frame, never an explanation of it.
 
 **Client names:** a caption may name a client ONLY if the name appears in
 `config.json → account.public_client_allowlist`. A client name visible inside the
-image, or the frame being cleared, does NOT allow naming them in the caption. For
-everyone else use Arjun's anonymous formula: `a recent startup we worked with`,
-`a recent ai b2b company we made a sales deck for`, `a recent b2b company`. Do NOT
-use the `X client` formula (`fintech client`, `sales tech client`), and never
-`an ai startup` bare (lint rejects it). Or skip the client entirely and make the
-caption about the viewer or craft (`would you add this to your mood board?`), within
-the ~1-in-10 question budget. If a frame really deserves the real name, ask Arjun to
+image, or the frame being cleared, does NOT allow naming them in the caption.
+Default anonymous formula: `a recent client`, optionally tagged
+(`brand + web for a recent client @pixeluplabs`) — use the tag on a minority of
+captions, not all. Beyond that, BE CREATIVE within the voice: craft angle, process
+angle, viewer angle (questions ≤1-in-10), small confessions. Avoid category-soup
+descriptors (`legal ai platform`, `fintech client`) and never `an ai startup` bare
+(lint rejects it). If a frame really deserves the real client name, ask Arjun to
 add it to the allowlist instead of guessing.
 
 ### 4. Lint
@@ -96,6 +97,9 @@ Read `state/runs/<run_id>/report.md` and summarize:
 2. How many drafts are planned and the date range they cover
 3. Live run: "review and confirm the week in Typefully". Dry run: point at the
    outbox dir and say which credentials are missing to go live.
+4. Always remind Arjun: while reviewing, use X's "Tag People" on each snapshot
+   image to tag @pixeluplabs — photo-tagging is not exposed by the Typefully API,
+   so it's a manual step at review time.
 
 ## Hard rules
 

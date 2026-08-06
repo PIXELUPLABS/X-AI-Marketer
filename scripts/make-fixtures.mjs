@@ -96,7 +96,8 @@ function hslToRgb(h, s, l) {
   return [f(0), f(8), f(4)];
 }
 
-// Canned frame tree in the exact shape lib/figma.mjs parses.
+// Canned frame tree in the exact shape lib/figma.mjs parses — frames live inside
+// an "export" SECTION, mirroring the real file's clearance convention.
 const fileJson = {
   name: "FIXTURE — worksnap cleared frames",
   document: {
@@ -104,7 +105,7 @@ const fileJson = {
       {
         name: "Page 1",
         type: "CANVAS",
-        children: frames,
+        children: [{ id: "0:900", name: "export", type: "SECTION", children: frames }],
       },
     ],
   },

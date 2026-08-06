@@ -2,7 +2,7 @@
   "_comment": "Knobs for the X AI Employee weekly worksnap pipeline. TODO values are blocked on Arjun — see PLAN.md 'Going live'. The pipeline auto-falls back to dry-run while TODOs/env keys are missing.",
 
   "account": {
-    "persona_name": "Tanvi Rao",
+    "persona_name": "Maya Menon",
     "persona_role": "brand designer at pixelup",
     "attribution": "first_person_own_work",
     "public_client_allowlist": [],
@@ -12,28 +12,30 @@
 
   "typefully": {
     "base_url": "https://api.typefully.com/v2",
-    "social_set_id": "TODO",
+    "social_set_id": 325071,
     "draft_mode": "planned",
     "_draft_mode_note": "planned -> plan_at: inert drafts that NEVER auto-publish; Arjun confirms each in Typefully. Flipping to 'scheduled' -> publish_at makes drafts AUTO-PUBLISH at slot time with no human review. One word, big consequences."
   },
 
   "figma": {
-    "file_key": "TODO",
+    "file_key": "gi0G5bUJkrpfJjFybaSFHi",
     "source": "dedicated_file",
     "_source_note": "A separate Figma file, not the main working file. Designers copy cleared frames into it. Because the pipeline can only ever read this one file, a frame being present IS the clearance — NDA, finished-enough, and correct attribution all confirmed by whoever dragged it in.",
+    "section_name": "export",
+    "_section_note": "Only frames inside the SECTION with this name (case-insensitive) are candidates. Designers drag cleared frames INTO the section. Set to null to fall back to all top-level frames.",
     "pick_order": "oldest_first",
-    "_pick_note": "Top-level frames in document order, FIFO, skipping node ids already in the journal. Nothing is ever written back to Figma; the PAT stays read-only.",
+    "_pick_note": "Frames in document order within the export section, FIFO, skipping node ids already in the journal. Nothing is ever written back to Figma; the PAT stays read-only.",
     "export_scale": 2,
     "export_format": "png"
   },
 
   "posting": {
     "posts_per_day": 2,
-    "slots_local": ["20:30", "23:30"],
+    "slots_local": ["09:00", "12:30"],
     "slot_labels": ["am", "pm"],
-    "_slots_note": "IST times chosen for the US-founder ICP: 20:30 IST = 8:00am PT, 23:30 IST = 11:00am PT / 2:30pm ET. slot_labels name the slug suffix (2026-08-10-am), not the local time of day.",
-    "timezone": "Asia/Kolkata",
-    "utc_offset": "+05:30",
+    "_slots_note": "SF time (target market). Base times per Buffer/Sprout/Hootsuite 2026 data: 9-11am local peak + 12-1pm lunch spike. Each day's actual times get a deterministic +/-jitter so the schedule never repeats exactly (anti-robotic); same run date always yields the same times.",
+    "jitter_minutes": 25,
+    "timezone": "America/Los_Angeles",
     "horizon_days": 7,
     "start_offset_days": 1,
     "_start_note": "First slot is tomorrow, never today — guarantees a review window in Typefully before anything is dated.",
@@ -42,15 +44,15 @@
   },
 
   "cta": {
-    "text": "Get a free brand perception audit.",
-    "base_url": "https://pixelup-website-v1.vercel.app/",
+    "text": "Losing enterprise deals?\n\nGet a brand perception audit 👇",
+    "base_url": "https://www.pixeluplabs.com/",
     "fragment": "audit",
     "utm": {
       "utm_source": "x",
-      "utm_medium": "social",
-      "utm_campaign": "worksnap"
+      "utm_campaign": "worksnap",
+      "utm_content": "maya"
     },
-    "_note": "utm_content is set per-post to the date-slot slug (tweet id is unknown before publish). Query string MUST precede the #fragment or the UTMs land inside the fragment and analytics sees nothing — slots.mjs builds the URL so this cannot happen."
+    "_note": "Per Arjun: UTMs carry exactly x + worksnap + the persona's first name, no dates. Per-post attribution lives in the journal (slot slug + draft id), not the URL. Query string MUST precede the #fragment or the UTMs land inside the fragment and analytics sees nothing — slots.mjs builds the URL so this cannot happen."
   },
 
   "paths": {

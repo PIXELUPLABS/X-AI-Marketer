@@ -25,7 +25,10 @@ const args = process.argv.slice(2);
 
 if (args[0] === "--check") {
   const cfg = loadConfig();
-  console.log(banner(cfg));
+  // --check exists to verify the key BEFORE the rest of the config is filled in,
+  // so it goes live whenever the key itself is present — unlike the pipeline.
+  cfg.dryRun = !cfg.env.TYPEFULLY_API_KEY;
+  console.log(cfg.dryRun ? "no TYPEFULLY_API_KEY — cannot check" : "checking live Typefully API...");
   const client = new TypefullyClient(cfg, "check");
   const sets = await client.getSocialSets();
   console.log("social sets:", JSON.stringify(sets.results ?? sets, null, 2));
@@ -79,8 +82,8 @@ for (const item of batch.items) {
     const { media_id } = await client.uploadMedia(item.image_file);
     const { id, outbox_file } = await client.createDraft({
       posts: [
-        { text: item.caption, media: [{ media_id }] },
-        { text: buildCtaTweet(cfg.cta, item.slot.slot_slug) },
+        { text: item.caption, media_ids: [media_id] },
+        { text: buildCtaTweet(cfg.cta) },
       ],
       slotIso: item.slot.slot_iso,
     });
@@ -102,7 +105,7 @@ for (const item of batch.items) {
       slot_slug: item.slot.slot_slug,
       archetype: item.archetype,
       caption: item.caption,
-      utm_content: item.slot.slot_slug,
+      utm_content: cfg.cta.utm.utm_content ?? null,
       typefully_draft_id: id,
       media_id,
       image_file: path.basename(item.image_file),
@@ -151,7 +154,7 @@ if (skips.length) {
 }
 const sample = batch.items.find((i) => i.slot);
 if (sample) {
-  lines.push(`CTA URL shape: ${buildCtaUrl(cfg.cta, sample.slot.slot_slug)}`);
+  lines.push(`CTA URL shape: ${buildCtaUrl(cfg.cta)}`);
   lines.push("");
 }
 lines.push(

@@ -15,7 +15,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { loadConfig, banner } from "../lib/config.mjs";
-import { computeSlots, todayInOffset } from "../lib/slots.mjs";
+import { computeSlots, todayInZone } from "../lib/slots.mjs";
 import { readJournal, consumedNodeIds } from "../lib/journal.mjs";
 import { listCandidateFrames, exportFrames } from "../lib/figma.mjs";
 
@@ -49,7 +49,7 @@ async function prepare(cfg) {
   const all = await listCandidateFrames(cfg);
   const candidates = all.filter((f) => !consumed.has(f.node_id)).slice(0, needed + cfg.posting.qa_buffer_frames);
 
-  const today = todayInOffset(cfg.posting.utc_offset);
+  const today = todayInZone(cfg.posting.timezone);
   let runId = today;
   for (let n = 2; existsSync(path.join(cfg.abs.runs_dir, runId)); n++) runId = `${today}-${n}`;
   const runDir = path.join(cfg.abs.runs_dir, runId);
