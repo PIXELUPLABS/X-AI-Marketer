@@ -1,0 +1,16 @@
+.env
+node_modules/
+
+# Dry-run would-be Typefully payloads. Transient; contain unposted client work.
+outbox/
+
+# Runtime state. journal.ndjson IS the source of truth — back it up, don't commit it.
+# runs/ holds per-run images + batches: regenerable, and they leak unreleased client work.
+state/
+!state/.gitkeep
+
+# Fixture PNGs are regenerable via scripts/make-fixtures.mjs
+fixtures/frames/
+
+.DS_Store
+*.log

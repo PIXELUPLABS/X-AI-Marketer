@@ -1,0 +1,12 @@
+{
+  "name": "x-ai-employee",
+  "private": true,
+  "type": "module",
+  "description": "Weekly worksnap pipeline: Figma frames -> Claude captions -> Typefully planned drafts. Zero dependencies.",
+  "scripts": {
+    "prepare-week": "node scripts/prepare-week.mjs",
+    "lint-captions": "node scripts/caption-lint.mjs",
+    "push-drafts": "node scripts/push-drafts.mjs",
+    "make-fixtures": "node scripts/make-fixtures.mjs"
+  }
+}

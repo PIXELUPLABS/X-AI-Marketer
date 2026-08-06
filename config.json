@@ -1,0 +1,69 @@
+{
+  "_comment": "Knobs for the X AI Employee weekly worksnap pipeline. TODO values are blocked on Arjun — see PLAN.md 'Going live'. The pipeline auto-falls back to dry-run while TODOs/env keys are missing.",
+
+  "account": {
+    "persona_name": "Tanvi Rao",
+    "persona_role": "brand designer at pixelup",
+    "attribution": "first_person_own_work",
+    "public_client_allowlist": [],
+    "_allowlist_note": "Captions may name a client ONLY if the name is in this list. Arjun adds a name once it's verifiably public (named in our own past tweets, or on pixeluplabs.com case studies). Default for everything else: anonymous descriptors like 'a fintech client'.",
+    "_note": "Identity prose (bio, avatar, hard rules) lives in voice/persona.md — this block is the machine-readable mirror."
+  },
+
+  "typefully": {
+    "base_url": "https://api.typefully.com/v2",
+    "social_set_id": "TODO",
+    "draft_mode": "planned",
+    "_draft_mode_note": "planned -> plan_at: inert drafts that NEVER auto-publish; Arjun confirms each in Typefully. Flipping to 'scheduled' -> publish_at makes drafts AUTO-PUBLISH at slot time with no human review. One word, big consequences."
+  },
+
+  "figma": {
+    "file_key": "TODO",
+    "source": "dedicated_file",
+    "_source_note": "A separate Figma file, not the main working file. Designers copy cleared frames into it. Because the pipeline can only ever read this one file, a frame being present IS the clearance — NDA, finished-enough, and correct attribution all confirmed by whoever dragged it in.",
+    "pick_order": "oldest_first",
+    "_pick_note": "Top-level frames in document order, FIFO, skipping node ids already in the journal. Nothing is ever written back to Figma; the PAT stays read-only.",
+    "export_scale": 2,
+    "export_format": "png"
+  },
+
+  "posting": {
+    "posts_per_day": 2,
+    "slots_local": ["20:30", "23:30"],
+    "slot_labels": ["am", "pm"],
+    "_slots_note": "IST times chosen for the US-founder ICP: 20:30 IST = 8:00am PT, 23:30 IST = 11:00am PT / 2:30pm ET. slot_labels name the slug suffix (2026-08-10-am), not the local time of day.",
+    "timezone": "Asia/Kolkata",
+    "utc_offset": "+05:30",
+    "horizon_days": 7,
+    "start_offset_days": 1,
+    "_start_note": "First slot is tomorrow, never today — guarantees a review window in Typefully before anything is dated.",
+    "qa_buffer_frames": 4,
+    "_buffer_note": "prepare-week picks 14 + 4 candidates so Claude's QA pass can reject a few frames without shorting the week."
+  },
+
+  "cta": {
+    "text": "Get a free brand perception audit.",
+    "base_url": "https://pixelup-website-v1.vercel.app/",
+    "fragment": "audit",
+    "utm": {
+      "utm_source": "x",
+      "utm_medium": "social",
+      "utm_campaign": "worksnap"
+    },
+    "_note": "utm_content is set per-post to the date-slot slug (tweet id is unknown before publish). Query string MUST precede the #fragment or the UTMs land inside the fragment and analytics sees nothing — slots.mjs builds the URL so this cannot happen."
+  },
+
+  "paths": {
+    "journal": "state/journal.ndjson",
+    "runs_dir": "state/runs",
+    "outbox_dir": "outbox",
+    "fixtures_dir": "fixtures"
+  },
+
+  "targets": {
+    "impressions": 100000,
+    "impressions_window_days": 90,
+    "signups": null,
+    "_signups_note": "TBC with Daksh. Modelled range is ~40 over the quarter at 100k impressions."
+  }
+}
